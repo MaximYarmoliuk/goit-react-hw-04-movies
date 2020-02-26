@@ -1,0 +1,13 @@
+.navigationItem{
+    list-style-type: none
+}
+
+.link{
+    font-size: 18px;
+    text-decoration: none;
+    color: black;
+}
+
+.activeLink{
+    color: blue;
+}
