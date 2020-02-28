@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import getQueryParams from "../../utils/getQueryParams";
+import ListOfMovies from "../ListOfMovies/ListOfMovies";
 import Searchbox from "../../components/Searchbox/Searchbox";
 import Spinner from "../../components/Spinner/Spinner";
 import movieApi from "../../servises/movieApi";
-import styles from "./MoviesPage.module.css";
+
+
 
 export default class MoviesPage extends Component {
   state = {
@@ -51,7 +52,6 @@ export default class MoviesPage extends Component {
 
   render() {
     const { movies, loading, query } = this.state;
-    const { match } = this.props;
 
     return (
       <>
@@ -61,21 +61,7 @@ export default class MoviesPage extends Component {
         {movies.length > 0 && (
           <>
             <h2>A list of movies on demand: {query}</h2>
-            <ul>
-              {movies.map(movie => (
-                <li key={movie.id} className={styles.item}>
-                  <Link
-                    className={styles.link}
-                    to={{
-                      pathname: `${match.url}/${movie.id}`,
-                      state: { from: this.props.location }
-                    }}
-                  >
-                    {movie.title}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            <ListOfMovies movies={movies}/>
           </>
         )}
 

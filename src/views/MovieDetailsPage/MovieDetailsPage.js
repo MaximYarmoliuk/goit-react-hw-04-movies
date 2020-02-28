@@ -33,12 +33,12 @@ export default class MovieDetailsPage extends Component {
   render() {
     const image = "https://image.tmdb.org/t/p/w300";
     const { movie, loading, error } = this.state;
-    const { match } = this.props;
+    const { match, location } = this.props;
 
     return (
       <>
         {loading && <Spinner />}
-        
+
         {!loading && error && <NotFound />}
 
         {!loading && !error && (
@@ -56,7 +56,7 @@ export default class MovieDetailsPage extends Component {
                 Popularity: {movie.popularity}
               </h2>
             )}
-            { movie.overview && (
+            {movie.overview && (
               <p className={styles.overview}>Overview: {movie.overview}</p>
             )}
           </>
@@ -71,7 +71,7 @@ export default class MovieDetailsPage extends Component {
                   activeClassName="Navigation-link-active"
                   to={{
                     pathname: `${match.url}/cast`,
-                    state: { from: this.props.location }
+                    state: {from: location.state && location.state.from}
                   }}
                   exact
                 >
@@ -87,7 +87,7 @@ export default class MovieDetailsPage extends Component {
                   activeClassName="Navigation-link-active"
                   to={{
                     pathname: `${match.url}/reviews`,
-                    state: { from: this.props.location }
+                    state:  {from: location.state && location.state.from}
                   }}
                   exact
                 >
